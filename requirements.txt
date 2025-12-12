@@ -1,0 +1,49 @@
+# ╔═══════════════════════════════════════════════════════════════╗
+# ║         CRYPTOGRAPHY DESKTOP APPLICATION                       ║
+# ║         CS-3002 Information Security                           ║
+# ╚═══════════════════════════════════════════════════════════════╝
+#
+# Required Dependencies
+# =====================
+# Install all dependencies with: pip install -r requirements.txt
+
+# GUI Framework - Modern, beautiful CustomTkinter interface
+customtkinter==5.2.1
+
+# Cryptography - PyCryptodome for AES and DES
+pycryptodome==3.19.0
+
+# Numerical Computing - NumPy for Hill Cipher matrix operations
+numpy==1.26.2
+
+# Image Processing - Pillow for GUI enhancements
+Pillow==10.1.0
+
+# OCR (Optical Character Recognition) - Extract text from images
+# Note: Also requires Tesseract OCR to be installed on the system
+# Download from: https://github.com/UB-Mannheim/tesseract/wiki
+pytesseract==0.3.13
+
+# ─────────────────────────────────────────────────────────────────
+# Installation Instructions:
+# ─────────────────────────────────────────────────────────────────
+#
+# 1. Open Command Prompt or Terminal
+# 2. Navigate to the project directory
+# 3. Run: pip install -r requirements.txt
+#
+# Alternative (install individually):
+#   pip install customtkinter pycryptodome numpy Pillow
+#
+# ─────────────────────────────────────────────────────────────────
+# Troubleshooting:
+# ─────────────────────────────────────────────────────────────────
+#
+# If you get permission errors, try:
+#   pip install --user -r requirements.txt
+#
+# If pycryptodome fails, try:
+#   pip uninstall pycrypto
+#   pip install pycryptodome
+#
+# ─────────────────────────────────────────────────────────────────

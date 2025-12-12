@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cryptography Desktop Application - Project Report</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap');
+        
+        :root {
+            --primary-color: #1e3a5f;
+            --secondary-color: #2d5a87;
+            --accent-color: #00b4d8;
+            --accent-gradient: linear-gradient(135deg, #00b4d8 0%, #0077b6 100%);
+            --gold-accent: #d4af37;
+            --text-color: #2c3e50;
+            --text-light: #5a6c7d;
+            --bg-color: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --border-color: #e2e8f0;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 11pt;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--bg-color);
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 0.75in;
+        }
+        
+        h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28pt;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 18pt;
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid;
+            border-image: var(--accent-gradient) 1;
+        }
+        
+        h3 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 14pt;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        h4 {
+            font-family: 'Source Sans Pro', sans-serif;
+            font-size: 12pt;
+            font-weight: 600;
+            color: var(--secondary-color);
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        
+        /* Title Page Styling */
+        .title-page {
+            text-align: center;
+            page-break-after: always;
+            padding-top: 1in;
+            background: linear-gradient(180deg, rgba(30,58,95,0.03) 0%, rgba(255,255,255,1) 100%);
+            border-radius: 10px;
+            margin: -0.75in;
+            padding: 1.5in 0.75in;
+        }
+        
+        .title-page .logo {
+            font-size: 72pt;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+        
+        .title-page h1 {
+            font-size: 32pt;
+            background: var(--bg-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border: none;
+            margin-bottom: 15px;
+        }
+        
+        .title-page .subtitle {
+            font-size: 16pt;
+            font-weight: 300;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .title-page .course-badge {
+            display: inline-block;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 8px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 11pt;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,180,216,0.3);
+        }
+        
+        .title-page .info {
+            font-size: 12pt;
+            margin: 15px 0;
+            color: var(--text-light);
+        }
+        
+        .title-page .info strong {
+            color: var(--text-color);
+        }
+        
+        .title-page table {
+            margin: 30px auto;
+            border-collapse: collapse;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .title-page th {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 35px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 10pt;
+        }
+        
+        .title-page td {
+            padding: 12px 35px;
+            border-bottom: 1px solid var(--border-color);
+            background: white;
+        }
+        
+        .title-page tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .submission-box {
+            margin-top: 50px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            border-left: 5px solid var(--gold-accent);
+        }
+        
+        .submission-box .date {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .submission-box .university {
+            font-size: 14pt;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .submission-box .university-full {
+            font-size: 10pt;
+            color: var(--text-light);
+        }
+        
+        /* Content Styling */
+        p {
+            margin-bottom: 12px;
+            text-align: justify;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 10px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 9pt;
+            letter-spacing: 0.5px;
+        }
+        
+        tr:nth-child(even) {
+            background: var(--bg-light);
+        }
+        
+        tr:hover {
+            background: rgba(0,180,216,0.05);
+        }
+        
+        .code {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10pt;
+            color: var(--secondary-color);
+        }
+        
+        .code-block {
+            font-family: 'Fira Code', 'Consolas', monospace;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-size: 9pt;
+            overflow-x: auto;
+            white-space: pre;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .formula {
+            font-family: 'Source Sans Pro', serif;
+            text-align: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .formula strong {
+            color: var(--primary-color);
+        }
+        
+        /* Table of Contents */
+        .toc {
+            page-break-after: always;
+            padding: 20px;
+        }
+        
+        .toc h2 {
+            text-align: center;
+            border: none;
+            margin-bottom: 30px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc > ul > li {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--border-color);
+            font-weight: 600;
+        }
+        
+        .toc ul ul {
+            margin-top: 8px;
+            padding-left: 25px;
+        }
+        
+        .toc ul ul li {
+            font-weight: 400;
+            padding: 5px 0;
+            color: var(--text-light);
+        }
+        
+        /* Notes and Warnings */
+        .note {
+            background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+            border-left: 4px solid var(--success-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+            border-left: 4px solid var(--error-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .info-box {
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-left: 4px solid var(--accent-color);
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .success {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        .status-pass {
+            display: inline-block;
+            background: var(--success-color);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 9pt;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .status-exceeded {
+            display: inline-block;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 9pt;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        .status-bonus {
+            display: inline-block;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 9pt;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+            padding-left: 25px;
+        }
+        
+        li {
+            margin-bottom: 6px;
+        }
+        
+        .page-break {
+            page-break-after: always;
+        }
+        
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .feature-card h4 {
+            margin-top: 0;
+            color: var(--primary-color);
+        }
+        
+        .feature-card p {
+            font-size: 10pt;
+            color: var(--text-light);
+            margin-bottom: 0;
+        }
+        
+        /* Highlight */
+        .highlight {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        
+        @media print {
+            body {
+                padding: 0;
+            }
+            .page-break {
+                page-break-after: always;
+            }
+            .title-page {
+                margin: 0;
+                padding-top: 2in;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- TITLE PAGE -->
+<div class="title-page">
+    <div class="logo">🔐</div>
+    <h1>CRYPTOGRAPHY DESKTOP APPLICATION</h1>
+    <div class="subtitle">CryptoSuite Pro Edition</div>
+    
+    <div class="course-badge">CS-3002 Information Security</div>
+    
+    <div class="info">
+        <strong>Course:</strong> CS-3002 Information Security<br>
+        <strong>Instructor:</strong> Miss Juhinah Batool<br>
+        <strong>Semester:</strong> Fall 2025
+    </div>
+    
+    <h3 style="margin-top: 40px; color: var(--primary-color);">👨‍💻 Group Members</h3>
+    <table>
+        <tr>
+            <th>Roll Number</th>
+            <th>Name</th>
+        </tr>
+        <tr>
+            <td>22F-3848</td>
+            <td>Ahmed Hassan Gondal</td>
+        </tr>
+        <tr>
+            <td>22F-3340</td>
+            <td>Muhammad Uzair</td>
+        </tr>
+        <tr>
+            <td>22F-3386</td>
+            <td>Abdul Rafay</td>
+        </tr>
+    </table>
+    
+    <div class="submission-box">
+        <div class="date">📅 December 12, 2025</div>
+        <div class="university">FAST-NUCES</div>
+        <div class="university-full">National University of Computer & Emerging Sciences</div>
+    </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc">
+    <h2>📑 Table of Contents</h2>
+    <ul>
+        <li>1. Introduction</li>
+        <li>2. Project Overview
+            <ul>
+                <li>2.1 Objectives</li>
+                <li>2.2 Features</li>
+                <li>2.3 Technology Stack</li>
+            </ul>
+        </li>
+        <li>3. System Requirements</li>
+        <li>4. Algorithms Implemented
+            <ul>
+                <li>4.1 Classical Ciphers</li>
+                <li>4.2 Modern Ciphers (AES, DES)</li>
+                <li>4.3 Key Exchange (Diffie-Hellman)</li>
+            </ul>
+        </li>
+        <li>5. Implementation Details</li>
+        <li>6. User Interface</li>
+        <li>7. Extra Features
+            <ul>
+                <li>7.1 File Operations</li>
+                <li>7.2 OCR Text Extraction</li>
+            </ul>
+        </li>
+        <li>8. Testing & Results</li>
+        <li>9. Conclusion</li>
+        <li>10. References</li>
+        <li>Appendix A: How to Run</li>
+        <li>Appendix B: Screenshots</li>
+    </ul>
+</div>
+
+<!-- SECTION 1: INTRODUCTION -->
+<h2>1. Introduction</h2>
+
+<p>Cryptography is the science of securing communication and data through the use of codes and ciphers. In today's digital age, cryptography plays a crucial role in protecting sensitive information from unauthorized access. This project implements a comprehensive desktop application that demonstrates various cryptographic algorithms, from classical ciphers to modern encryption standards.</p>
+
+<p>The application serves as both an educational tool and a practical demonstration of cryptographic concepts covered in the CS-3002 Information Security course. It provides hands-on experience with:</p>
+
+<ul>
+    <li><strong>Symmetric encryption techniques</strong> (AES-128, DES)</li>
+    <li><strong>Classical substitution and transposition ciphers</strong> (Caesar, Vigenère, Playfair, Hill, Monoalphabetic)</li>
+    <li><strong>Key exchange protocols</strong> (Diffie-Hellman)</li>
+    <li><strong>Mathematical foundations</strong> of cryptography</li>
+    <li><strong>File encryption/decryption</strong> for practical applications</li>
+    <li><strong>OCR text extraction</strong> from images for encryption</li>
+</ul>
+
+<div class="info-box">
+    <strong>💡 Project Highlight:</strong> This application exceeds the minimum requirements by implementing 5 classical ciphers (only 2 required), providing step-by-step calculations for all algorithms, and including bonus features like file encryption and OCR text extraction.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 2: PROJECT OVERVIEW -->
+<h2>2. Project Overview</h2>
+
+<h3>2.1 Objectives</h3>
+<p>The primary objectives of this project are:</p>
+<ol>
+    <li><strong>Implement Classical Ciphers:</strong> Develop working implementations of historical encryption algorithms including Caesar, Vigenère, Playfair, Hill, and Monoalphabetic ciphers.</li>
+    <li><strong>Implement Modern Encryption:</strong> Create AES-128 and DES encryption/decryption modules with proper key handling and hexadecimal I/O.</li>
+    <li><strong>Implement Key Exchange:</strong> Demonstrate the Diffie-Hellman key exchange protocol with step-by-step calculations.</li>
+    <li><strong>Create User-Friendly GUI:</strong> Design an intuitive graphical interface with modern aesthetics and premium dark theme.</li>
+    <li><strong>Provide Educational Value:</strong> Display step-by-step calculations for each algorithm to aid understanding.</li>
+    <li><strong>Enable File Operations:</strong> Support loading text from files and saving encrypted results.</li>
+    <li><strong>Support OCR:</strong> Extract text from images for encryption using Tesseract OCR.</li>
+</ol>
+
+<h3>2.2 Features</h3>
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Description</th>
+        <th>Status</th>
+    </tr>
+    <tr>
+        <td>Classical Ciphers</td>
+        <td>5 classical ciphers implemented (Caesar, Vigenère, Playfair, Hill, Monoalphabetic)</td>
+        <td><span class="status-exceeded">EXCEEDED</span></td>
+    </tr>
+    <tr>
+        <td>Modern Encryption</td>
+        <td>AES-128 (CBC mode) and DES with full implementation</td>
+        <td><span class="status-pass">✓ COMPLETE</span></td>
+    </tr>
+    <tr>
+        <td>Key Exchange</td>
+        <td>Complete Diffie-Hellman implementation with calculations</td>
+        <td><span class="status-pass">✓ COMPLETE</span></td>
+    </tr>
+    <tr>
+        <td>File Encryption</td>
+        <td>AES file encryption/decryption (Bonus Feature)</td>
+        <td><span class="status-bonus">★ BONUS</span></td>
+    </tr>
+    <tr>
+        <td>Step-by-Step Display</td>
+        <td>Calculation visualization for ALL algorithms</td>
+        <td><span class="status-pass">✓ COMPLETE</span></td>
+    </tr>
+    <tr>
+        <td>Load from File</td>
+        <td>Load text from any file type for all 7 algorithms</td>
+        <td><span class="status-bonus">★ EXTRA</span></td>
+    </tr>
+    <tr>
+        <td>Save to File</td>
+        <td>Save encrypted/decrypted results to file for all 7 algorithms</td>
+        <td><span class="status-bonus">★ EXTRA</span></td>
+    </tr>
+    <tr>
+        <td>OCR Extraction</td>
+        <td>Extract text from images using Tesseract OCR for all 7 algorithms</td>
+        <td><span class="status-bonus">★ EXTRA</span></td>
+    </tr>
+    <tr>
+        <td>Premium GUI</td>
+        <td>Dark theme interface with animations and modern design</td>
+        <td><span class="status-pass">✓ COMPLETE</span></td>
+    </tr>
+    <tr>
+        <td>Standalone Executable</td>
+        <td>CryptoSuite.exe - No Python installation required</td>
+        <td><span class="status-pass">✓ COMPLETE</span></td>
+    </tr>
+</table>
+
+<h3>2.3 Technology Stack</h3>
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Technology</th>
+        <th>Version</th>
+    </tr>
+    <tr>
+        <td>Programming Language</td>
+        <td>Python</td>
+        <td>3.11</td>
+    </tr>
+    <tr>
+        <td>GUI Framework</td>
+        <td>CustomTkinter</td>
+        <td>5.2.1</td>
+    </tr>
+    <tr>
+        <td>Cryptography Library</td>
+        <td>PyCryptodome</td>
+        <td>3.19.0</td>
+    </tr>
+    <tr>
+        <td>Numerical Library</td>
+        <td>NumPy</td>
+        <td>1.26.2</td>
+    </tr>
+    <tr>
+        <td>Image Processing</td>
+        <td>Pillow</td>
+        <td>10.1.0</td>
+    </tr>
+    <tr>
+        <td>OCR Engine</td>
+        <td>pytesseract</td>
+        <td>0.3.13</td>
+    </tr>
+    <tr>
+        <td>Build Tool</td>
+        <td>PyInstaller</td>
+        <td>6.3.0</td>
+    </tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 3: SYSTEM REQUIREMENTS -->
+<h2>3. System Requirements</h2>
+
+<h3>3.1 Minimum Requirements</h3>
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Requirement</th>
+    </tr>
+    <tr>
+        <td>Operating System</td>
+        <td>Windows 10/11</td>
+    </tr>
+    <tr>
+        <td>RAM</td>
+        <td>4 GB</td>
+    </tr>
+    <tr>
+        <td>Storage</td>
+        <td>100 MB</td>
+    </tr>
+    <tr>
+        <td>Display</td>
+        <td>1280x720 resolution</td>
+    </tr>
+</table>
+
+<h3>3.2 For Running from Source</h3>
+<table>
+    <tr>
+        <th>Component</th>
+        <th>Version</th>
+    </tr>
+    <tr>
+        <td>Python</td>
+        <td>3.8 or higher</td>
+    </tr>
+    <tr>
+        <td>pip</td>
+        <td>Latest version</td>
+    </tr>
+    <tr>
+        <td>Tesseract OCR (optional)</td>
+        <td>5.0+ (for OCR feature)</td>
+    </tr>
+</table>
+
+<h3>3.3 Python Dependencies</h3>
+<div class="code-block"># GUI Framework
+customtkinter==5.2.1
+
+# Cryptography
+pycryptodome==3.19.0
+
+# Numerical Operations
+numpy==1.26.2
+
+# Image Processing
+Pillow==10.1.0
+
+# OCR Support
+pytesseract==0.3.13
+
+# Theme Detection
+darkdetect==0.8.0</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 4: ALGORITHMS -->
+<h2>4. Algorithms Implemented</h2>
+
+<h3>4.1 Classical Ciphers</h3>
+
+<h4>4.1.1 Caesar Cipher</h4>
+<p><strong>Description:</strong> The Caesar cipher is one of the simplest and oldest encryption techniques. It works by shifting each letter in the plaintext by a fixed number of positions in the alphabet.</p>
+
+<div class="formula">
+    <strong>Encryption:</strong> E(x) = (x + k) mod 26<br>
+    <strong>Decryption:</strong> D(x) = (x - k) mod 26<br><br>
+    Where: x = letter position (A=0, B=1, ..., Z=25), k = shift key
+</div>
+
+<p><strong>Example:</strong></p>
+<table>
+    <tr>
+        <th>Letter</th>
+        <th>Position (x)</th>
+        <th>x + 3</th>
+        <th>mod 26</th>
+        <th>Result</th>
+    </tr>
+    <tr><td>H</td><td>7</td><td>10</td><td>10</td><td>K</td></tr>
+    <tr><td>E</td><td>4</td><td>7</td><td>7</td><td>H</td></tr>
+    <tr><td>L</td><td>11</td><td>14</td><td>14</td><td>O</td></tr>
+    <tr><td>L</td><td>11</td><td>14</td><td>14</td><td>O</td></tr>
+    <tr><td>O</td><td>14</td><td>17</td><td>17</td><td>R</td></tr>
+</table>
+<p style="text-align:center"><em>HELLO with shift 3 → KHOOR</em></p>
+
+<h4>4.1.2 Vigenère Cipher</h4>
+<p><strong>Description:</strong> A polyalphabetic substitution cipher that uses a keyword to encrypt the message. Each letter uses a different shift based on the corresponding keyword letter.</p>
+
+<div class="formula">
+    <strong>Encryption:</strong> Cᵢ = (Pᵢ + Kᵢ) mod 26<br>
+    <strong>Decryption:</strong> Pᵢ = (Cᵢ - Kᵢ) mod 26
+</div>
+
+<p><strong>Example:</strong> Plaintext "ATTACK" with keyword "LEMON"</p>
+<table>
+    <tr>
+        <th>Plaintext</th><td>A</td><td>T</td><td>T</td><td>A</td><td>C</td><td>K</td>
+    </tr>
+    <tr>
+        <th>Key</th><td>L</td><td>E</td><td>M</td><td>O</td><td>N</td><td>L</td>
+    </tr>
+    <tr>
+        <th>Ciphertext</th><td>L</td><td>X</td><td>F</td><td>O</td><td>P</td><td>V</td>
+    </tr>
+</table>
+
+<h4>4.1.3 Playfair Cipher</h4>
+<p><strong>Description:</strong> A digraph substitution cipher that encrypts pairs of letters using a 5×5 key matrix. Letters I and J share the same cell.</p>
+
+<p><strong>Key Matrix with keyword "MONARCHY":</strong></p>
+<div class="code-block">M O N A R
+C H Y B D
+E F G I/J K
+L P Q S T
+U V W X Z</div>
+
+<p><strong>Encryption Rules:</strong></p>
+<ol>
+    <li><strong>Same Row:</strong> Replace each letter with the letter to its right (wrap around)</li>
+    <li><strong>Same Column:</strong> Replace each letter with the letter below (wrap around)</li>
+    <li><strong>Rectangle:</strong> Swap columns within the same row</li>
+</ol>
+
+<h4>4.1.4 Hill Cipher (2×2 Matrix)</h4>
+<p><strong>Description:</strong> A polygraphic cipher using linear algebra. It encrypts blocks of letters using matrix multiplication modulo 26.</p>
+
+<div class="formula">
+    <strong>Encryption:</strong> C = K × P (mod 26)<br>
+    <strong>Decryption:</strong> P = K⁻¹ × C (mod 26)<br><br>
+    Requirement: gcd(det(K), 26) = 1
+</div>
+
+<h4>4.1.5 Monoalphabetic Cipher</h4>
+<p><strong>Description:</strong> A substitution cipher where each letter is replaced by a fixed substitute letter. The key space is 26! ≈ 4.03 × 10²⁶ possible keys.</p>
+
+<div class="page-break"></div>
+
+<h3>4.2 Modern Ciphers</h3>
+
+<h4>4.2.1 AES-128 (Advanced Encryption Standard)</h4>
+<p><strong>Description:</strong> AES is a symmetric block cipher established by NIST in 2001. Our implementation uses AES-128 with CBC mode.</p>
+
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr><td>Block Size</td><td>128 bits (16 bytes)</td></tr>
+    <tr><td>Key Size</td><td>128 bits (16 bytes)</td></tr>
+    <tr><td>Number of Rounds</td><td>10</td></tr>
+    <tr><td>Mode</td><td>CBC (Cipher Block Chaining)</td></tr>
+</table>
+
+<p><strong>Round Operations:</strong></p>
+<ol>
+    <li><strong>SubBytes:</strong> Non-linear byte substitution using S-box lookup table</li>
+    <li><strong>ShiftRows:</strong> Cyclic row shifting (row 0: no shift, row 1: 1 left, row 2: 2 left, row 3: 3 left)</li>
+    <li><strong>MixColumns:</strong> Column mixing using matrix multiplication in GF(2⁸) - not applied in final round</li>
+    <li><strong>AddRoundKey:</strong> XOR state with round key derived from key schedule</li>
+</ol>
+
+<h4>4.2.2 DES (Data Encryption Standard)</h4>
+<p><strong>Description:</strong> DES is a symmetric block cipher using the Feistel structure with 16 rounds.</p>
+
+<table>
+    <tr>
+        <th>Parameter</th>
+        <th>Value</th>
+    </tr>
+    <tr><td>Block Size</td><td>64 bits (8 bytes)</td></tr>
+    <tr><td>Key Size</td><td>56 bits (64 with parity)</td></tr>
+    <tr><td>Number of Rounds</td><td>16 Feistel rounds</td></tr>
+</table>
+
+<div class="warning">
+    <strong>⚠️ Security Notice:</strong> DES is now considered insecure due to its 56-bit key length. It is included in this project for educational purposes only. For secure applications, use AES.
+</div>
+
+<div class="page-break"></div>
+
+<h3>4.3 Key Exchange: Diffie-Hellman</h3>
+
+<p><strong>Description:</strong> Diffie-Hellman is a method for securely exchanging cryptographic keys over a public channel, published in 1976 by Whitfield Diffie and Martin Hellman.</p>
+
+<p><strong>Protocol Steps:</strong></p>
+<ol>
+    <li><strong>Public Parameters:</strong> Alice and Bob agree on prime <em>p</em> and generator <em>g</em></li>
+    <li><strong>Private Keys:</strong> Alice chooses <em>a</em>, Bob chooses <em>b</em></li>
+    <li><strong>Public Keys:</strong> Alice computes A = g<sup>a</sup> mod p, Bob computes B = g<sup>b</sup> mod p</li>
+    <li><strong>Key Exchange:</strong> They exchange A and B over the public channel</li>
+    <li><strong>Shared Secret:</strong> Alice computes K = B<sup>a</sup> mod p, Bob computes K = A<sup>b</sup> mod p</li>
+</ol>
+
+<p><strong>Example:</strong></p>
+<table>
+    <tr><th>Step</th><th>Alice</th><th>Bob</th></tr>
+    <tr><td>Public params</td><td colspan="2">p = 23, g = 5</td></tr>
+    <tr><td>Private key</td><td>a = 6</td><td>b = 15</td></tr>
+    <tr><td>Public key</td><td>A = 5⁶ mod 23 = 8</td><td>B = 5¹⁵ mod 23 = 19</td></tr>
+    <tr><td>Shared secret</td><td>K = 19⁶ mod 23 = <strong>2</strong></td><td>K = 8¹⁵ mod 23 = <strong>2</strong></td></tr>
+</table>
+
+<div class="note">
+    <strong>🔒 Security:</strong> The security of Diffie-Hellman relies on the Discrete Logarithm Problem (DLP), which is computationally infeasible to solve for large prime numbers.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 5: IMPLEMENTATION -->
+<h2>5. Implementation Details</h2>
+
+<h3>5.1 Project Structure</h3>
+<div class="code-block">IS_SEMESTER_PROJECT/
+│
+├── main.py                    # Entry point with premium banner
+├── requirements.txt           # Dependencies
+├── README.md                  # Documentation
+├── PROJECT_REPORT.md          # Report (Markdown)
+├── PROJECT_REPORT.html        # Report (HTML)
+│
+├── ciphers/                   # Classical ciphers
+│   ├── __init__.py
+│   ├── caesar_cipher.py       # Caesar cipher with steps
+│   ├── vigenere_cipher.py     # Vigenère cipher with tableau
+│   ├── playfair_cipher.py     # Playfair with matrix display
+│   ├── hill_cipher.py         # Hill 2×2 matrix cipher
+│   └── monoalphabetic_cipher.py
+│
+├── modern_ciphers/            # Modern encryption
+│   ├── __init__.py
+│   ├── aes_cipher.py          # AES-128 CBC with file support
+│   ├── des_cipher.py          # DES with round demonstration
+│   └── diffie_hellman.py      # DH key exchange
+│
+├── gui/                       # Premium GUI components
+│   ├── __init__.py
+│   ├── main_window.py         # Main application window (4000+ lines)
+│   ├── theme.py               # Color scheme and styling
+│   └── animations.py          # Animation utilities
+│
+├── build_exe.py               # Executable builder script
+└── dist/                      # Compiled executable
+    └── CryptoSuite.exe        # Standalone application (28 MB)</div>
+
+<h3>5.2 Code Quality Standards</h3>
+<ul>
+    <li><strong>Documentation:</strong> All functions include comprehensive docstrings</li>
+    <li><strong>Type Hints:</strong> Function parameters use Python type annotations</li>
+    <li><strong>Error Handling:</strong> Input validation and exception handling throughout</li>
+    <li><strong>Modularity:</strong> Separate modules for each cipher with clean interfaces</li>
+    <li><strong>UI/UX:</strong> Premium dark theme with smooth animations and intuitive navigation</li>
+</ul>
+
+<h3>5.3 Key Implementation Snippets</h3>
+
+<p><strong>Caesar Cipher - Core Encryption Logic:</strong></p>
+<div class="code-block">def encrypt(self, plaintext: str, shift: int) -> tuple:
+    for char in plaintext.upper():
+        if char in self.alphabet:
+            x = self.alphabet.index(char)
+            encrypted_pos = (x + shift) % 26
+            ciphertext.append(self.alphabet[encrypted_pos])
+    return ''.join(ciphertext), calculation_steps</div>
+
+<p><strong>AES - Key Generation:</strong></p>
+<div class="code-block">def generate_key(self) -> str:
+    self.key = get_random_bytes(16)  # 128 bits
+    return binascii.hexlify(self.key).decode('utf-8').upper()</div>
+
+<p><strong>File Loading with Multiple Encodings:</strong></p>
+<div class="code-block">def _load_text_from_file(self, target_textbox):
+    encodings = ['utf-8', 'utf-16', 'latin-1', 'cp1252', 'ascii']
+    for encoding in encodings:
+        try:
+            with open(file_path, 'r', encoding=encoding) as f:
+                content = f.read()
+            break
+        except UnicodeDecodeError:
+            continue</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 6: USER INTERFACE -->
+<h2>6. User Interface</h2>
+
+<h3>6.1 Design Philosophy</h3>
+<p>The application features a modern premium dark theme with professional aesthetics:</p>
+<ul>
+    <li><strong>Deep dark background:</strong> Reduces eye strain during extended use</li>
+    <li><strong>Vibrant accent colors:</strong> Highlights important elements and actions</li>
+    <li><strong>Clear typography:</strong> Monospace fonts for code and hex values</li>
+    <li><strong>Intuitive layout:</strong> Sidebar navigation with content area</li>
+    <li><strong>Smooth animations:</strong> Pulsing effects and color transitions</li>
+</ul>
+
+<h3>6.2 Color Scheme</h3>
+<table>
+    <tr>
+        <th>Element</th>
+        <th>Color</th>
+        <th>Hex Code</th>
+    </tr>
+    <tr><td>Background</td><td style="background:#0d1117;color:white">Deep Dark</td><td>#0d1117</td></tr>
+    <tr><td>Surface</td><td style="background:#161b22;color:white">Dark Gray</td><td>#161b22</td></tr>
+    <tr><td>Primary Accent</td><td style="background:#58a6ff;color:black">Blue</td><td>#58a6ff</td></tr>
+    <tr><td>Success</td><td style="background:#3fb950;color:black">Green</td><td>#3fb950</td></tr>
+    <tr><td>Warning</td><td style="background:#d29922;color:black">Gold</td><td>#d29922</td></tr>
+    <tr><td>Error</td><td style="background:#f85149;color:white">Red</td><td>#f85149</td></tr>
+    <tr><td>Text Primary</td><td style="background:#f0f6fc">Light</td><td>#f0f6fc</td></tr>
+</table>
+
+<h3>6.3 Main Components</h3>
+<ol>
+    <li><strong>Dashboard:</strong> Overview of all features with quick access cards</li>
+    <li><strong>Classical Ciphers Section:</strong> All 5 classical cipher implementations</li>
+    <li><strong>Modern Ciphers Section:</strong> AES-128 and DES with file support</li>
+    <li><strong>Key Exchange Section:</strong> Diffie-Hellman demonstration</li>
+    <li><strong>Calculation Display:</strong> Step-by-step visualization for each operation</li>
+    <li><strong>File Operations:</strong> Load from file, save to file buttons</li>
+    <li><strong>OCR Integration:</strong> Extract text from images button</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- SECTION 7: EXTRA FEATURES -->
+<h2>7. Extra Features</h2>
+
+<h3>7.1 File Operations</h3>
+<p>The application supports comprehensive file operations for all 7 encryption algorithms:</p>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <h4>📂 Load from File</h4>
+        <p>Load text from any file type (.txt, .csv, .json, .xml, .html, .md, .py, .js, etc.) with automatic encoding detection.</p>
+    </div>
+    <div class="feature-card">
+        <h4>💾 Save to File</h4>
+        <p>Save encrypted or decrypted results to a text file for future reference or sharing.</p>
+    </div>
+</div>
+
+<p><strong>Supported File Types:</strong></p>
+<ul>
+    <li>Text files (.txt)</li>
+    <li>Data files (.csv, .json, .xml)</li>
+    <li>Web files (.html, .htm)</li>
+    <li>Documentation (.md)</li>
+    <li>Source code (.py, .js, .java, .c, .cpp, .h, .cs)</li>
+    <li>Any text-based file format</li>
+</ul>
+
+<h3>7.2 OCR Text Extraction</h3>
+<p>The application can extract text from images using Tesseract OCR:</p>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <h4>🖼️ Image to Text</h4>
+        <p>Extract text from PNG, JPG, JPEG, BMP, TIFF, and GIF images using Optical Character Recognition.</p>
+    </div>
+    <div class="feature-card">
+        <h4>🔐 Encrypt Image Text</h4>
+        <p>Once extracted, the text can be encrypted using any of the 7 available algorithms.</p>
+    </div>
+</div>
+
+<p><strong>Supported Image Formats:</strong></p>
+<ul>
+    <li>PNG (.png)</li>
+    <li>JPEG (.jpg, .jpeg)</li>
+    <li>BMP (.bmp)</li>
+    <li>TIFF (.tiff)</li>
+    <li>GIF (.gif)</li>
+</ul>
+
+<div class="info-box">
+    <strong>📝 Note:</strong> For OCR functionality, Tesseract OCR must be installed on the system. The application provides helpful instructions if Tesseract is not found.
+</div>
+
+<div class="page-break"></div>
+
+<!-- SECTION 8: TESTING -->
+<h2>8. Testing & Results</h2>
+
+<h3>8.1 Test Cases - Classical Ciphers</h3>
+<table>
+    <tr>
+        <th>Cipher</th>
+        <th>Input</th>
+        <th>Key</th>
+        <th>Expected Output</th>
+        <th>Status</th>
+    </tr>
+    <tr><td>Caesar</td><td>HELLO</td><td>3</td><td>KHOOR</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Caesar</td><td>WORLD</td><td>5</td><td>BTWQI</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Vigenère</td><td>HELLO</td><td>KEY</td><td>RIJVS</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Playfair</td><td>HELLO</td><td>MONARCHY</td><td>CFSUPM</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Hill</td><td>HELLO</td><td>HILL</td><td>Valid output</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Monoalphabetic</td><td>HELLO</td><td>SECRET</td><td>Substituted</td><td><span class="status-pass">✓ Pass</span></td></tr>
+</table>
+
+<h3>8.2 Test Cases - Modern Ciphers</h3>
+<table>
+    <tr>
+        <th>Algorithm</th>
+        <th>Test</th>
+        <th>Result</th>
+    </tr>
+    <tr><td>AES-128</td><td>Encrypt "Hello World" → Decrypt</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>AES-128</td><td>File encryption → decryption</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>AES-128</td><td>Hex output verification</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>DES</td><td>Encrypt "Test123" → Decrypt</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>DES</td><td>16 rounds execution</td><td><span class="status-pass">✓ Pass</span></td></tr>
+</table>
+
+<h3>8.3 Test Cases - Diffie-Hellman</h3>
+<table>
+    <tr>
+        <th>p</th>
+        <th>g</th>
+        <th>a</th>
+        <th>b</th>
+        <th>Shared Key</th>
+        <th>Status</th>
+    </tr>
+    <tr><td>23</td><td>5</td><td>6</td><td>15</td><td>2</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>7919</td><td>7</td><td>123</td><td>456</td><td>Same for both</td><td><span class="status-pass">✓ Pass</span></td></tr>
+</table>
+
+<h3>8.4 Test Cases - Extra Features</h3>
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Test</th>
+        <th>Result</th>
+    </tr>
+    <tr><td>Load from File</td><td>Load .txt, .json, .py files</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Save to File</td><td>Save encrypted result to .txt</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>OCR</td><td>Extract text from PNG image</td><td><span class="status-pass">✓ Pass</span></td></tr>
+    <tr><td>Encoding Detection</td><td>UTF-8, UTF-16, Latin-1 files</td><td><span class="status-pass">✓ Pass</span></td></tr>
+</table>
+
+<div class="page-break"></div>
+
+<!-- SECTION 9: CONCLUSION -->
+<h2>9. Conclusion</h2>
+
+<h3>9.1 Project Achievements</h3>
+<p>This project successfully implements all required components and significantly exceeds the minimum requirements:</p>
+
+<table>
+    <tr>
+        <th>Requirement</th>
+        <th>Required</th>
+        <th>Implemented</th>
+        <th>Status</th>
+    </tr>
+    <tr><td>Classical Ciphers</td><td>At least 2</td><td>5</td><td><span class="status-exceeded">EXCEEDED</span></td></tr>
+    <tr><td>AES Module</td><td>AES-128</td><td>AES-128 + file encryption</td><td><span class="status-pass">✓ Complete</span></td></tr>
+    <tr><td>DES Module</td><td>16 Feistel rounds</td><td>Full implementation</td><td><span class="status-pass">✓ Complete</span></td></tr>
+    <tr><td>Diffie-Hellman</td><td>Key exchange</td><td>Full with calculations</td><td><span class="status-pass">✓ Complete</span></td></tr>
+    <tr><td>GUI Application</td><td>Desktop GUI</td><td>Premium dark theme</td><td><span class="status-pass">✓ Complete</span></td></tr>
+    <tr><td>Hex I/O</td><td>For modern ciphers</td><td>Implemented</td><td><span class="status-pass">✓ Complete</span></td></tr>
+    <tr><td>Calculation Steps</td><td>Optional</td><td>Included for all</td><td><span class="status-bonus">★ Bonus</span></td></tr>
+    <tr><td>File Encryption</td><td>Optional (Bonus)</td><td>AES file encryption</td><td><span class="status-bonus">★ Bonus</span></td></tr>
+    <tr><td>Load from File</td><td>Not required</td><td>All 7 algorithms</td><td><span class="status-bonus">★ Extra</span></td></tr>
+    <tr><td>Save to File</td><td>Not required</td><td>All 7 algorithms</td><td><span class="status-bonus">★ Extra</span></td></tr>
+    <tr><td>OCR Extraction</td><td>Not required</td><td>All 7 algorithms</td><td><span class="status-bonus">★ Extra</span></td></tr>
+    <tr><td>Executable</td><td>Required</td><td>CryptoSuite.exe (28 MB)</td><td><span class="status-pass">✓ Complete</span></td></tr>
+</table>
+
+<h3>9.2 Learning Outcomes</h3>
+<p>Through this project, we gained:</p>
+<ul>
+    <li>Deep understanding of classical and modern cryptographic algorithms</li>
+    <li>Practical experience with symmetric encryption (AES, DES)</li>
+    <li>Knowledge of key exchange protocols (Diffie-Hellman)</li>
+    <li>GUI development skills using Python and CustomTkinter</li>
+    <li>Software engineering best practices including documentation and testing</li>
+    <li>File handling with multiple encoding support</li>
+    <li>Integration of OCR technology for text extraction</li>
+</ul>
+
+<h3>9.3 Future Enhancements</h3>
+<p>Potential improvements for future versions:</p>
+<ul>
+    <li>Triple DES (3DES) implementation</li>
+    <li>RSA public-key encryption</li>
+    <li>Digital signature support</li>
+    <li>Hash function implementations (SHA-256, MD5)</li>
+    <li>Steganography features</li>
+    <li>Cloud integration for secure file sharing</li>
+</ul>
+
+<div class="page-break"></div>
+
+<!-- SECTION 10: REFERENCES -->
+<h2>10. References</h2>
+
+<ol>
+    <li>Stallings, W. (2017). <em>Cryptography and Network Security: Principles and Practice</em> (7th ed.). Pearson.</li>
+    <li>National Institute of Standards and Technology. (2001). <em>FIPS 197: Advanced Encryption Standard (AES)</em>. U.S. Department of Commerce.</li>
+    <li>National Institute of Standards and Technology. (1999). <em>FIPS 46-3: Data Encryption Standard (DES)</em>. U.S. Department of Commerce.</li>
+    <li>Diffie, W., & Hellman, M. (1976). New directions in cryptography. <em>IEEE Transactions on Information Theory</em>, 22(6), 644-654.</li>
+    <li>Kahn, D. (1996). <em>The Codebreakers: The Comprehensive History of Secret Communication from Ancient Times to the Internet</em>. Scribner.</li>
+    <li>CustomTkinter Documentation. https://customtkinter.tomschimansky.com/</li>
+    <li>PyCryptodome Documentation. https://pycryptodome.readthedocs.io/</li>
+    <li>Tesseract OCR Documentation. https://github.com/tesseract-ocr/tesseract</li>
+</ol>
+
+<div class="page-break"></div>
+
+<!-- APPENDIX A -->
+<h2>Appendix A: How to Run the Application</h2>
+
+<h3>Option 1: Using the Executable (Recommended)</h3>
+<ol>
+    <li>Navigate to the <code class="code">dist/</code> folder</li>
+    <li>Double-click <code class="code">CryptoSuite.exe</code></li>
+    <li>The application will launch without requiring Python</li>
+</ol>
+
+<h3>Option 2: Running from Source Code</h3>
+<div class="code-block"># Step 1: Open Command Prompt and navigate to project folder
+cd IS_SEMESTER_PROJECT
+
+# Step 2: Install dependencies
+pip install -r requirements.txt
+
+# Step 3: Run the application
+python main.py</div>
+
+<h3>Option 3: For OCR Feature (Optional)</h3>
+<div class="code-block"># Install Tesseract OCR from:
+# https://github.com/UB-Mannheim/tesseract/wiki
+
+# Add to system PATH (e.g., C:\Program Files\Tesseract-OCR)
+
+# The application will automatically detect Tesseract</div>
+
+<div class="page-break"></div>
+
+<!-- APPENDIX B -->
+<h2>Appendix B: Screenshots</h2>
+
+<p><em>[Insert screenshots of the application here during final report preparation]</em></p>
+
+<ol>
+    <li><strong>Dashboard/Home Screen</strong> - Overview of all features with animated cards</li>
+    <li><strong>Caesar Cipher</strong> - Encryption with step-by-step calculation</li>
+    <li><strong>Vigenère Cipher</strong> - Keyword-based encryption with tableau</li>
+    <li><strong>Playfair Cipher</strong> - Key matrix display</li>
+    <li><strong>Hill Cipher</strong> - Matrix multiplication demonstration</li>
+    <li><strong>AES-128</strong> - Hexadecimal output with round demonstration</li>
+    <li><strong>DES</strong> - Feistel round visualization</li>
+    <li><strong>Diffie-Hellman</strong> - Key exchange process</li>
+    <li><strong>File Operations</strong> - Load from file, save to file dialogs</li>
+    <li><strong>OCR Extraction</strong> - Text extraction from image</li>
+</ol>
+
+<hr style="margin-top: 50px; border: none; border-top: 3px solid; border-image: var(--accent-gradient) 1;">
+
+<div style="text-align: center; margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 10px;">
+    <p style="font-size: 14pt; font-weight: 600; color: var(--primary-color); margin-bottom: 10px;">
+        — End of Report —
+    </p>
+    <p style="font-size: 11pt; color: var(--text-light); margin-bottom: 5px;">
+        <em>This report was prepared for CS-3002 Information Security course project submission.</em>
+    </p>
+    <p style="font-size: 12pt; font-weight: 600; color: var(--secondary-color);">
+        FAST-NUCES
+    </p>
+    <p style="font-size: 10pt; color: var(--text-light);">
+        Submitted: December 12, 2025
+    </p>
+</div>
+
+</body>
+</html>

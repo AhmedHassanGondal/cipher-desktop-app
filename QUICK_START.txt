@@ -1,0 +1,141 @@
+╔════════════════════════════════════════════════════════════════════════════╗
+║                                                                            ║
+║                       CRYPTOSUITE PRO - QUICK START                        ║
+║                                                                            ║
+║              Complete Setup Guide - Everything is Ready!                  ║
+║                                                                            ║
+╚════════════════════════════════════════════════════════════════════════════╝
+
+
+LAUNCHING THE APPLICATION
+══════════════════════════════════════════════════════════════════════════════
+
+Step 1: Open PowerShell or Command Prompt
+
+Step 2: Navigate to the project directory:
+
+    cd C:\Users\ah350\Downloads\IS_SEMESTER_PROJECT\IS_SEMESTER_PROJECT
+
+Step 3: Run the application:
+
+    python main.py
+
+The GUI will launch automatically!
+
+
+VERIFYING INSTALLATION
+══════════════════════════════════════════════════════════════════════════════
+
+Check if all dependencies are installed:
+
+    pip list | findstr "customtkinter pycryptodome numpy Pillow pytesseract"
+
+Expected output:
+    customtkinter                      5.2.1
+    numpy                              1.26.2
+    Pillow                             10.1.0
+    pycryptodome                       3.19.0
+    pytesseract                        0.3.13
+
+
+QUICK TEST
+══════════════════════════════════════════════════════════════════════════════
+
+Test a cipher from command line:
+
+    python -c "from ciphers.caesar_cipher import CaesarCipher; c = CaesarCipher(); ct, _ = c.encrypt('HELLO', 3); print(f'Encrypted: {ct}')"
+
+Expected output:
+    Encrypted: KHOOR
+
+
+FEATURES AVAILABLE
+══════════════════════════════════════════════════════════════════════════════
+
+Classical Ciphers:
+  • Caesar Cipher (shift-based)
+  • Vigenere Cipher (keyword-based)
+  • Playfair Cipher (5×5 matrix)
+  • Hill Cipher (2×2 matrix)
+  • Monoalphabetic Cipher (custom substitution)
+
+Modern Encryption:
+  • AES-128 (Advanced Encryption Standard)
+  • DES (Data Encryption Standard)
+
+Key Exchange:
+  • Diffie-Hellman Protocol
+
+Bonus Features:
+  • Step-by-step calculation display
+  • Load text from files
+  • Save encrypted results
+  • Extract text from images (OCR)
+  • Beautiful dark-themed UI
+
+
+TROUBLESHOOTING
+══════════════════════════════════════════════════════════════════════════════
+
+Issue: ModuleNotFoundError: No module named 'customtkinter'
+Solution: pip install -r requirements.txt
+
+Issue: Application won't start
+Solution: Ensure you're in the correct directory and have Python 3.9+
+
+Issue: OCR feature not working
+Solution: This is optional. Download Tesseract OCR from:
+         https://github.com/UB-Mannheim/tesseract/wiki
+
+Issue: Console shows garbled characters
+Solution: Run this command in PowerShell:
+         chcp 65001
+
+
+PROJECT STRUCTURE
+══════════════════════════════════════════════════════════════════════════════
+
+IS_SEMESTER_PROJECT/
+├── main.py                         Main entry point
+├── requirements.txt                All dependencies
+├── README.md                       Project documentation
+├── PROJECT_REPORT.md               Detailed report
+│
+├── ciphers/                        Classical cipher implementations
+│   ├── caesar_cipher.py
+│   ├── vigenere_cipher.py
+│   ├── playfair_cipher.py
+│   ├── hill_cipher.py
+│   └── monoalphabetic_cipher.py
+│
+├── modern_ciphers/                 Modern encryption algorithms
+│   ├── aes_cipher.py
+│   ├── des_cipher.py
+│   └── diffie_hellman.py
+│
+└── gui/                            User interface
+    ├── main_window.py
+    ├── theme.py
+    └── animations.py
+
+
+ENVIRONMENT STATUS
+══════════════════════════════════════════════════════════════════════════════
+
+✅ All dependencies installed
+✅ All modules verified
+✅ GUI ready to launch
+✅ All ciphers functional
+
+Your project is fully operational!
+
+
+SUPPORT
+══════════════════════════════════════════════════════════════════════════════
+
+For more information, see:
+- README.md - Overview of features
+- PROJECT_REPORT.md - Detailed documentation
+- SUBMISSION_CHECKLIST.txt - Pre-submission checklist
+- SETUP_COMPLETE.txt - Installation verification report
+

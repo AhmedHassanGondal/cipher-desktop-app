@@ -1,0 +1,183 @@
+╔═══════════════════════════════════════════════════════════════════════════════╗
+║                    CS-3002 INFORMATION SECURITY                               ║
+║                    PROJECT SUBMISSION CHECKLIST                               ║
+║                    CRYPTOGRAPHY DESKTOP APPLICATION                           ║
+║                                                                               ║
+║                    Submission Date: December 2, 2025                          ║
+╚═══════════════════════════════════════════════════════════════════════════════╝
+
+GROUP MEMBERS:
+==============
+  Roll Number: 22F-3848    Name: Ahmed Hassan Gondal
+  Roll Number: 22F-3340    Name: Muhammad Uzair
+  Roll Number: 22F-3386    Name: Abdul Rafay
+
+═══════════════════════════════════════════════════════════════════════════════
+
+BEFORE SUBMISSION, COMPLETE THESE STEPS:
+=========================================
+
+✓ 1. UPDATE YOUR DETAILS IN THE REPORT (DONE!)
+      - PROJECT_REPORT.html - Updated with names and date
+      - PROJECT_REPORT.md - Updated with names and date
+      - README.md - Updated with all features
+
+□ 2. TAKE SCREENSHOTS OF THE APPLICATION
+      - Run: python main.py
+      - Capture screenshots of:
+        ✓ Dashboard/Home screen
+        ✓ Caesar Cipher (with encryption example)
+        ✓ Vigenère Cipher (with encryption example)
+        ✓ Playfair Cipher (showing key matrix)
+        ✓ Hill Cipher (showing matrix calculation)
+        ✓ AES-128 (with hex output)
+        ✓ DES (with round demonstration)
+        ✓ Diffie-Hellman (with key exchange steps)
+        ✓ File Operations (Load from File, Save to File)
+        ✓ OCR Extraction (Extract from Image)
+      - Add screenshots to Appendix B in the report
+
+□ 3. CONVERT REPORT TO PDF
+      - Open PROJECT_REPORT.html in Chrome/Edge
+      - Press Ctrl+P → Save as PDF
+      - OR copy content to Microsoft Word
+
+□ 4. CREATE SUBMISSION FOLDER
+      Folder Name: 22F3713_22F3725_CryptoSuite
+      
+      Structure:
+      ├── Source_Code/
+      │   ├── main.py
+      │   ├── requirements.txt
+      │   ├── README.md
+      │   ├── ciphers/
+      │   ├── modern_ciphers/
+      │   └── gui/
+      │
+      ├── Executable/
+      │   └── CryptoSuite.exe (from dist/ folder)
+      │
+      └── Report.pdf
+
+□ 5. TEST EXECUTABLE
+      - Double-click dist/CryptoSuite.exe
+      - Verify all features work without Python installed
+
+□ 6. SUBMIT ON GOOGLE CLASSROOM
+      - Upload the folder as ZIP file
+      - Submit before deadline
+
+═══════════════════════════════════════════════════════════════════════════════
+
+PROJECT FEATURES IMPLEMENTED:
+═════════════════════════════
+
+CLASSICAL CIPHERS (5 implemented, only 2 required) ⭐ EXCEEDED:
+  ✓ Caesar Cipher - Shift-based encryption
+  ✓ Vigenère Cipher - Keyword-based polyalphabetic
+  ✓ Playfair Cipher - 5×5 matrix digraph cipher
+  ✓ Hill Cipher - 2×2 matrix multiplication
+  ✓ Monoalphabetic Cipher - Custom substitution alphabet
+
+MODERN ENCRYPTION:
+  ✓ AES-128 - 10 rounds, SubBytes/ShiftRows/MixColumns demo
+  ✓ DES - 16 Feistel rounds, S-box, permutation demo
+
+KEY EXCHANGE:
+  ✓ Diffie-Hellman - Public/private keys, shared secret computation
+
+BONUS FEATURES:
+  ✓ File Encryption/Decryption (AES)
+  ✓ Step-by-step calculation display for ALL algorithms
+  ✓ Modern GUI with premium dark theme
+  ✓ Standalone executable (28 MB)
+
+EXTRA FEATURES (Beyond Requirements) 🆕:
+  ✓ Load from File - All 7 algorithms (7 buttons)
+  ✓ Save Result to File - All 7 algorithms (7 buttons)
+  ✓ Extract from Image (OCR) - All 7 algorithms (7 buttons)
+  ✓ Total: 21 file operation buttons
+
+═══════════════════════════════════════════════════════════════════════════════
+
+REQUIREMENTS SUMMARY:
+=====================
+
++-----------------------------------------------+----------+----------+
+| REQUIREMENT                                   | REQUIRED | STATUS   |
++-----------------------------------------------+----------+----------+
+| Desktop GUI Application (Python)              | Yes      | ✓ PASS   |
++-----------------------------------------------+----------+----------+
+| Classical Ciphers (minimum 2)                 | 2        | 5 ⭐     |
++-----------------------------------------------+----------+----------+
+| AES-128 Implementation                        | Yes      | ✓ PASS   |
++-----------------------------------------------+----------+----------+
+| DES Implementation                            | Yes      | ✓ PASS   |
++-----------------------------------------------+----------+----------+
+| Diffie-Hellman Key Exchange                   | Yes      | ✓ PASS   |
++-----------------------------------------------+----------+----------+
+| Display Plaintext/Ciphertext/Keys             | Yes      | ✓ PASS   |
++-----------------------------------------------+----------+----------+
+| Step-by-step Calculations                     | Optional | ✓ BONUS  |
++-----------------------------------------------+----------+----------+
+| File Encryption/Decryption                    | Bonus    | ✓ BONUS  |
++-----------------------------------------------+----------+----------+
+| Load from File                                | Extra    | ✓ EXTRA  |
++-----------------------------------------------+----------+----------+
+| Save to File                                  | Extra    | ✓ EXTRA  |
++-----------------------------------------------+----------+----------+
+| OCR Text Extraction                           | Extra    | ✓ EXTRA  |
++-----------------------------------------------+----------+----------+
+| Standalone Executable                         | Yes      | ✓ PASS   |
++-----------------------------------------------+----------+----------+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+VIVA PREPARATION TIPS:
+======================
+
+Be ready to explain:
+
+1. CAESAR CIPHER
+   - Formula: E(x) = (x + k) mod 26
+   - Weakness: Only 26 possible keys (brute force attack)
+
+2. VIGENÈRE CIPHER
+   - Uses repeating keyword for different shifts
+   - Vulnerable to Kasiski examination
+
+3. PLAYFAIR CIPHER
+   - 5×5 matrix, I/J combined
+   - Three rules: same row, same column, rectangle
+
+4. HILL CIPHER
+   - Matrix multiplication mod 26
+   - Key must be invertible (gcd(det, 26) = 1)
+
+5. AES-128
+   - Block size: 128 bits, Key: 128 bits, Rounds: 10
+   - SubBytes, ShiftRows, MixColumns, AddRoundKey
+
+6. DES
+   - Block: 64 bits, Key: 56 bits, Rounds: 16
+   - Feistel structure, S-boxes, Permutations
+   - WHY INSECURE: 56-bit key can be brute-forced
+
+7. DIFFIE-HELLMAN
+   - A = g^a mod p, B = g^b mod p
+   - Shared secret K = g^(ab) mod p
+   - Security: Discrete Logarithm Problem
+
+8. EXTRA FEATURES (Be ready to demonstrate!)
+   - Load from File: Supports multiple encodings (UTF-8, UTF-16, etc.)
+   - Save to File: Exports encrypted/decrypted results
+   - OCR: Uses Tesseract to extract text from images
+
+═══════════════════════════════════════════════════════════════════════════════
+
+GOOD LUCK WITH YOUR SUBMISSION AND VIVA! 🎓
+
+Project Status: 100% COMPLETE ✅
+Submission Date: December 2, 2025
+
+═══════════════════════════════════════════════════════════════════════════════
