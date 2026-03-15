@@ -1,0 +1,27 @@
+﻿# Virtual environment
+.venv/
+venv/
+env/
+
+# Build outputs
+build/
+dist/
+*.spec
+
+# Submission / setup junk
+ALL_DONE.txt
+SETUP_COMPLETE.txt
+SUBMISSION_CHECKLIST.txt
+QUICK_START.txt
+FINAL_REPORT.txt
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# IDE
+.vscode/
+.idea/
