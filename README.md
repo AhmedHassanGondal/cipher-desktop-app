@@ -85,9 +85,10 @@ CryptoSuite Pro features a stunning, professional-grade GUI designed for optimal
 
 ### Installation
 
-1. **Clone or download the project**
+1. **Clone the project**
 ```bash
-cd IS_SEMESTER_PROJECT
+git clone https://github.com/AhmedHassanGondal/cipher-desktop-app.git
+cd cipher-desktop-app
 ```
 
 2. **Install dependencies**
@@ -109,13 +110,12 @@ python main.py
 ## 📦 Project Structure
 
 ```
-IS_SEMESTER_PROJECT/
+cipher-desktop-app/
 ├── main.py                    # Entry point with premium banner
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # This file
 ├── PROJECT_REPORT.html        # Detailed project report (HTML)
 ├── PROJECT_REPORT.md          # Project report (Markdown)
-├── SUBMISSION_CHECKLIST.txt   # Submission requirements checklist
 │
 ├── ciphers/                   # Classical cipher implementations
 │   ├── __init__.py
@@ -137,10 +137,11 @@ IS_SEMESTER_PROJECT/
 │   ├── theme.py               # Color scheme and styling
 │   └── animations.py          # Animation utilities
 │
-├── build_exe.py               # Executable builder script
-└── dist/                      # Compiled executable
-    └── CryptoSuite.exe        # Standalone application (28 MB)
+└── build_exe.py               # Executable builder script (run to generate dist/CryptoSuite.exe)
 ```
+
+> The compiled `dist/CryptoSuite.exe` is not committed — run `python build_exe.py`
+> to produce it locally.
 
 ---
 
