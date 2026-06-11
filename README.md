@@ -85,9 +85,10 @@ CryptoSuite Pro features a stunning, professional-grade GUI designed for optimal
 
 ### Installation
 
-1. **Clone or download the project**
+1. **Clone the project**
 ```bash
-cd IS_SEMESTER_PROJECT
+git clone https://github.com/AhmedHassanGondal/cipher-desktop-app.git
+cd cipher-desktop-app
 ```
 
 2. **Install dependencies**
